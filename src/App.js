@@ -10,19 +10,19 @@ import UseState, { useState } from 'react';
  */
 export const App = () => {
   const [dogUrl, setDogUrl] = useState("https://images.dog.ceo/breeds/coonhound/n02089078_237.jpg");
-  var newImg;
-  fetch("https://dog.ceo/api/breeds/image/random")
-    .then(response => response.json())
-    .then(data => newImg = data.message);
 
   return (
     <>
-      <header>
+      <header className="header">
         Dogアプリ
       </header>
-      <p>犬の画像を表示するサイトです。</p>
-      <img src={dogUrl}></img>
-      <button onClick={() => setDogUrl(newImg)}>Click here!!</button>
+      <div className="div">
+        <p className="text">犬の画像を表示するサイトです。</p>
+        <img src={dogUrl} className="image"></img>
+        <button onClick={() => fetch("https://dog.ceo/api/breeds/image/random")
+          .then(response => response.json())
+          .then(data => setDogUrl(data.message))} className="button">Click here!!</button>
+      </div>
     </>
   )
 }
